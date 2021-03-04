@@ -1,29 +1,23 @@
-# Create React Express App
+# WoW Random Achievement Hunter
 
-## About This Boilerplate
+As a World of Warcraft player who loves hunting achievements, I want to continue completing achievements but am unsure where to start.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+I want an app that will recommend me a random achievement to complete next, from my incomplete achievements.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+Then I will be presented with an achievement, with some of the basic information about it, and the option to random again if I don’t like the chosen achievement.
+## Planned Features
 
-## Starting the app locally
+Allow a user to search by character, then use a random button to recommend an incomplete achievement.(Option to generate random by category?)
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+When the random achievement is displayed, have a clickable WoWHead link, where the user can find more information about the achievement.
 
-```
-npm install
-```
+Allow the user to login, grabbing the data for their character.
 
-This should install node modules within the server and the client folder.
+Allow the user to save a wishlist of achievements that they are hunting, if they want to pursue multiple simultaneously.
 
-After both installations complete, run the following command in your terminal:
+Allow the user to search multiple characters together for random achievements that are incomplete  on all characters, useful for groups.
 
-```
-npm start
-```
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+## Technology
 
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+Use WoW Profile Data -> Character Achievement API, WoW Game Data -> Realm API,
