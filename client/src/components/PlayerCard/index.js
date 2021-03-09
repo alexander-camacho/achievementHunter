@@ -1,18 +1,20 @@
 import React from "react"
+import PlayerData from "../../PlayerData"
+import PlayerImg from "../../PlayerImg"
 
 
 function PlayerCard() {
+
     return (
-        <div className="col md-6">
 
             <div className="card">
-                <img src="..." alt="..." className="card-img-top" />
+                <img src={PlayerImg.assets[1].value} alt="..." className="card-img-top" />
                 <div className="card-body">
-                    <h5 className="card-title">Card Title</h5>
-                    <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat laudantium laborum facilis iure, ipsum hic adipisci natus dolorem facere dolores, nam illo? Omnis in consequuntur tempora praesentium, voluptatem quod architecto?</p>
+                    <h2 className="card-title">{PlayerData.name} Level {PlayerData.level}</h2>
+                    <h3>{PlayerData.race.name} {PlayerData.active_spec.name} {PlayerData.character_class.name}</h3>
+                    <h4>{PlayerData.achievement_points} Achievement Points</h4>
                 </div>
             </div>
-        </div>
     )
 }
 
