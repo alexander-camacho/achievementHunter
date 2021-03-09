@@ -31,7 +31,7 @@ const Random = () => {
                 </div>
                 <div className="col md-6">
                     {/* Add functionality to generate random achievement */}
-                    <RandomBtn onClick={() => handleGetRandom(incomplete)} />
+                    <RandomBtn onClick={() => setRandom(handleGetRandom(incomplete))} />
                     <AchieveBanner data={handleGetRandom(incomplete)} />
                 </div>
             </div>
