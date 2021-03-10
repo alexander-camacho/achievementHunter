@@ -1,42 +1,52 @@
-import React, { useState, useEffect } from "react"
+import React, { Component } from "react"
 import achievements from "../achievements"
 import RandomBtn from "../components/RandomBtn"
 import AchieveBanner from "../components/AchieveBanner"
 import PlayerCard from "../components/PlayerCard"
 
-const Random = () => {
+class Random extends Component {
 
-    const [random, setRandom] = useState([])
+    state = {
+        achievement: {},
 
-    const allAchieves = (achievements[0].achievements)
-    const incomplete = []
+    }
 
-    const checkComplete = (item) => {
-        if (!item.completed_timestamp) {
-            incomplete.push(item)
+    allAchieves = (achievements[0].achievements)
+    incomplete = []
+
+    checkComplete = (array) => {
+        for (var i = 0; i < array.length; i++) {
+            if (!array[i].completed_timestamp) {
+                this.incomplete.push(array[i])
+            }
         }
     }
-    allAchieves.forEach(checkComplete)
-
-    const handleGetRandom = (array) => {
-
-        return ((array[Math.floor(Math.random() * array.length)]))
+    
+    handleGetRandom = (array) => {
+        this.checkComplete(this.allAchieves)
+        const randomAchieve = array[Math.floor(Math.random() * array.length)]
+        this.setState({
+            achievement: {
+                randomAchieve
+            }
+        })
     }
+    render() {
 
-    return (
-        <div className="container">
-            <div className="row">
-                <div className="col md-6">
-                    <PlayerCard />
-                </div>
-                <div className="col md-6">
-                    {/* Add functionality to generate random achievement */}
-                    <RandomBtn onClick={() => setRandom(handleGetRandom(incomplete))} />
-                    <AchieveBanner data={handleGetRandom(incomplete)} />
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col md-6">
+                        <PlayerCard />
+                    </div>
+                    <div className="col md-6">
+                        <RandomBtn onClick={() => (this.handleGetRandom(this.incomplete))} />
+                        <AchieveBanner data={this.state.achievement} />
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Random
