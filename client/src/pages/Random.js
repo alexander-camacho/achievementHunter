@@ -11,6 +11,11 @@ class Random extends Component {
 
     }
 
+    // Load a random achievement when the component first mounts.
+    componentDidMount() {
+        this.handleGetRandom(this.incomplete)
+    }
+
     allAchieves = (achievements[0].achievements)
     incomplete = []
 
