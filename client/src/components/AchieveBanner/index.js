@@ -1,7 +1,6 @@
 import React from "react"
 
 function AchieveBanner(props) {
-    console.log(props)
 
     const url = `//wowhead.com/achievement=${props.data?.randomAchieve?.achievement?.id}`
 
