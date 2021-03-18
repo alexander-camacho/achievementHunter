@@ -2,22 +2,18 @@ import React, { useRef } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import { SET_CHARACTER } from "../../utils/actions"
 
-function SearchForm(props) {
-
+function SearchForm() {
     const realmRef = useRef()
     const charRef = useRef()
     const [state, dispatch] = useStoreContext()
 
     const handleSubmit = event => {
         event.preventDefault()
-        console.log(realmRef.current.value)
-        console.log(charRef.current.value)
         dispatch({
             type: SET_CHARACTER,
             character: charRef.current.value,
             realm: realmRef.current.value
         })
-
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -38,7 +34,8 @@ function SearchForm(props) {
                     required ref={charRef}
                 ></input>
                 <br></br>
-                <button onClick={props.setCharacter}>Submit</button>
+                <button disabled={state.loading} 
+                >Submit</button>
                 <button disabled='true' href="/auth/bnet">Login</button>
             </div>
         </form>

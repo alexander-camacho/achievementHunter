@@ -6,6 +6,7 @@ import {
     LOADING,
     UPDATE_CHARACTER,
     CLEAR_DATA,
+    SET_IMAGE
 } from "./actions"
 
 const StoreContext = createContext()
@@ -17,7 +18,7 @@ const reducer = (state, action) => {
         case SET_CHARACTER:
             return {
                 ...state,
-                characters: [ ...state.characters, {
+                characters: [...state.characters, {
                     name: action.character,
                     realm: action.realm
                 }],
@@ -41,7 +42,14 @@ const reducer = (state, action) => {
         case UPDATE_CHARACTER:
             return {
                 ...state,
-                characters: [...state.characters],
+                characters: [{
+                    name: action.name,
+                    level: action.level,
+                    race: action.race,
+                    spec: action.spec,
+                    class: action.class,
+                    points: action.points
+                }],
                 loading: false
             };
         case SET_ACHIEVEMENT:
@@ -49,6 +57,11 @@ const reducer = (state, action) => {
                 ...state,
                 achievement: action.achievement,
                 loading: false
+            }
+        case SET_IMAGE:
+            return {
+                ...state,
+                img: action.img
             }
         case LOADING:
             return {
