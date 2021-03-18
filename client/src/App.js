@@ -5,12 +5,14 @@ import Nav from "./components/Nav"
 import Home from "./pages/Home"
 import Random from "./pages/Random"
 import Saved from "./pages/Saved"
+import { StoreProvider } from "./utils/GlobalState";
 
 class App extends Component {
   render() {
     return (
     <Router>
       <div>
+        <StoreProvider>
         <Nav />
 
         <Switch>
@@ -18,6 +20,7 @@ class App extends Component {
           <Route exact path={'/random'} component={Random} />
           <Route exact path={'/saved'} component={Saved} />
         </Switch>
+        </StoreProvider>
       </div>
     </Router>
   );
