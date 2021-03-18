@@ -1,57 +1,67 @@
-import React, { Component } from "react"
+import React, { useEffect } from "react"
 import achievements from "../achievements"
 import RandomBtn from "../components/RandomBtn"
 import AchieveBanner from "../components/AchieveBanner"
 import PlayerCard from "../components/PlayerCard"
+import { useStoreContext } from "../utils/GlobalState"
+import { LOADING, SET_ACHIEVEMENT, UPDATE_CHARACTER } from "../utils/actions"
+import API from "../utils/API"
 
-class Random extends Component {
+const Random = () => {
 
-    state = {
-        achievement: {},
+    const [state, dispatch] = useStoreContext()
 
+
+    const pull = () => {
+        const allAchieves = []
+        API.getAchievements(state.characters[0].realm, state.characters[0].name).then(res => {
+            for (var i = 0; i < res.data.achievements.length; i++) {
+                allAchieves.push(res.data.achievements[i])
+            }
+            checkComplete(allAchieves)
+            handleGetRandom(incomplete)
+        })
     }
 
-    // Load a random achievement when the component first mounts.
-    componentDidMount() {
-        this.handleGetRandom(this.incomplete)
-    }
+    const incomplete = []
 
-    allAchieves = (achievements[0].achievements)
-    incomplete = []
-
-    checkComplete = (array) => {
+    const checkComplete = (array) => {
         for (var i = 0; i < array.length; i++) {
             if (!array[i].completed_timestamp) {
-                this.incomplete.push(array[i])
+                incomplete.push(array[i])
             }
         }
     }
-    
-    handleGetRandom = (array) => {
-        this.checkComplete(this.allAchieves)
+
+    const handleGetRandom = (array) => {
         const randomAchieve = array[Math.floor(Math.random() * array.length)]
-        this.setState({
+        dispatch({
+            type: SET_ACHIEVEMENT,
             achievement: {
                 randomAchieve
             }
         })
     }
-    render() {
 
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col md-6">
-                        <PlayerCard />
-                    </div>
-                    <div className="col md-6">
-                        <RandomBtn onClick={() => (this.handleGetRandom(this.incomplete))} />
-                        <AchieveBanner data={this.state.achievement} />
-                    </div>
+
+    // Run the pull() function on page load.
+    useEffect(() => {
+        pull()
+    }, [])
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col md-6">
+                    <PlayerCard />
+                </div>
+                <div className="col md-6">
+                    <RandomBtn onClick={() => pull()} />
+                    <AchieveBanner data={state.achievement} />
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Random
