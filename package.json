@@ -1,7 +1,10 @@
 {
-  "name": "mern",
+  "name": "Random Achievement Hunter",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "Random Achievement Hunter",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
