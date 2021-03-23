@@ -28,7 +28,7 @@ function PlayerCard() {
             then(res => {
                 dispatch({
                     type: SET_IMAGE,
-                    img: res.data.assets[1].value
+                    img: res.data.assets[2].value
                 })
 
             })
@@ -38,6 +38,7 @@ function PlayerCard() {
         img()
         player()
     }, [])
+
     return (
 
         <div className="card">

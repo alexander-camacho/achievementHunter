@@ -3,7 +3,7 @@ import RandomBtn from "../components/RandomBtn"
 import AchieveBanner from "../components/AchieveBanner"
 import PlayerCard from "../components/PlayerCard"
 import { useStoreContext } from "../utils/GlobalState"
-import { LOADING, SET_ACHIEVEMENT, UPDATE_CHARACTER } from "../utils/actions"
+import { SET_ACHIEVEMENT } from "../utils/actions"
 import API from "../utils/API"
 
 const Random = () => {
@@ -42,6 +42,9 @@ const Random = () => {
         })
     }
 
+    if(!state.characters){
+        return <div>no character</div>
+    }
 
     // Run the pull() function on page load.
     useEffect(() => {

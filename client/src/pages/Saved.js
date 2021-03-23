@@ -14,6 +14,9 @@ const Saved = () => {
         });
     }
 
+    if (!state.savedAchievements) {
+        return <div>No achievements saved!</div>
+    }
     return (
         <div>
             {state.savedAchievements.map(function (saved) {

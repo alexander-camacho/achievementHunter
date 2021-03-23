@@ -13,7 +13,7 @@ function Nav() {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/saved">In Progress</Link>
+                        <Link className="nav-link" to="/saved">Saved</Link>
                     </li>
                     <li>
                         <Link className="nav-link" to="/random">Random</Link>
