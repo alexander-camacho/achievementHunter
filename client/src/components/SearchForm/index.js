@@ -1,11 +1,15 @@
 import React, { useRef } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import { SET_CHARACTER } from "../../utils/actions"
+import { Link, Redirect, useHistory, withRouter } from 'react-router-dom'
+import API from "../../utils/API"
+
 
 function SearchForm() {
     const realmRef = useRef()
     const charRef = useRef()
     const [state, dispatch] = useStoreContext()
+    let history = useHistory()
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -14,7 +18,11 @@ function SearchForm() {
             character: charRef.current.value,
             realm: realmRef.current.value
         })
+        if (state.characters[0] !== null) {
+            history.push('/random')
+        }
     }
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -34,13 +42,11 @@ function SearchForm() {
                     required ref={charRef}
                 ></input>
                 <br></br>
-                <button disabled={state.loading} 
-                >Submit</button>
-                <button disabled='true' href="/auth/bnet">Login</button>
+                <button>Submit</button>
             </div>
         </form>
     )
 }
 
 
-export default SearchForm
+export default withRouter(SearchForm)

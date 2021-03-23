@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import achievements from "../achievements"
 import RandomBtn from "../components/RandomBtn"
 import AchieveBanner from "../components/AchieveBanner"
 import PlayerCard from "../components/PlayerCard"

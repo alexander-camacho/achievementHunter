@@ -20,10 +20,12 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-    "express": "^4.16.3",
-    "if-env": "^1.0.4",
-    "passport-bnet": "^2.0.0",
     "dotenv": "^8.2.0",
-    "passport": "^0.4.1"
+    "express": "^4.16.3",
+    "express-session": "^1.17.1",
+    "if-env": "^1.0.4",
+    "passport": "^0.4.1",
+    "passport-bnet": "^2.0.0",
+    "simple-oauth2": "^2.2.1"
   }
 }
