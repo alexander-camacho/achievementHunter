@@ -9,7 +9,7 @@ function PlayerCard() {
 
     const player = () => {
         dispatch({ type: LOADING });
-        API.getCharacter(state.characters[0].realm, state.characters[0].name).then(res => {
+        API.getCharacter(state.characters[0].realm, state.characters[0].name, state.token).then(res => {
             dispatch({
                 type: UPDATE_CHARACTER,
                 name: res.data.name,
@@ -24,7 +24,7 @@ function PlayerCard() {
     }
 
     const img = () => {
-        API.getImg(state.characters[0].realm, state.characters[0].name).
+        API.getImg(state.characters[0].realm, state.characters[0].name, state.token).
             then(res => {
                 dispatch({
                     type: SET_IMAGE,
@@ -33,7 +33,7 @@ function PlayerCard() {
 
             })
     }
-    
+
     useEffect(() => {
         img()
         player()

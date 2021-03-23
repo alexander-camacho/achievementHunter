@@ -1,15 +1,34 @@
+require('dotenv').config()
 const express = require("express");
 const path = require("path");
+const cors = require('cors')
+const OAuthClient = require('./config/client');
 const PORT = process.env.PORT || 3001;
+
+
+const oauthClient = new OAuthClient()
+
+let token = ''
+oauthClient.getToken().then(res => token = (res.token.access_token))
 const app = express();
+app.use(cors())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.static("public"))
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+
 // Send every request to the React app
 // Define any API routes before this runs
+app.get('/token', (req, res) => {
+  res.send({
+    token: token
+  })
+})
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

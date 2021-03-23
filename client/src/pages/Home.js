@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import SearchForm from "../components/SearchForm"
-import { CLEAR_DATA, LOADING } from "../utils/actions"
+import { CLEAR_DATA, LOADING, SET_TOKEN } from "../utils/actions"
+import API from "../utils/API"
 import { useStoreContext } from "../utils/GlobalState"
 
 
@@ -11,18 +12,24 @@ const Home = () => {
     useEffect(() => {
         dispatch({ type: LOADING })
         dispatch({ type: CLEAR_DATA })
+        API.getToken()
+            .then(res =>
+                dispatch({
+                    type: SET_TOKEN,
+                    token: res.data.token
+                }))
     }, [])
 
-        return (<div className="container">
-            <h1>Welcome to Random Achievement Hunter</h1>
-            <p>Please enter your character's name and server below to get started!</p>
+    return (<div className="container">
+        <h1>Welcome to Random Achievement Hunter</h1>
+        <p>Please enter your character's name and server below to get started!</p>
 
-            <SearchForm/>
+        <SearchForm />
 
 
-        </div>
-        )
-    }
+    </div>
+    )
+}
 
 
 export default Home

@@ -13,7 +13,7 @@ const Random = () => {
 
     const pull = () => {
         const allAchieves = []
-        API.getAchievements(state.characters[0].realm, state.characters[0].name).then(res => {
+        API.getAchievements(state.characters[0].realm, state.characters[0].name, state.token).then(res => {
             for (var i = 0; i < res.data.achievements.length; i++) {
                 allAchieves.push(res.data.achievements[i])
             }

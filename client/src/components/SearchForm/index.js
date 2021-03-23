@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import { SET_CHARACTER } from "../../utils/actions"
-import { Link, Redirect, useHistory, withRouter } from 'react-router-dom'
+import { useHistory, withRouter } from 'react-router-dom'
 import API from "../../utils/API"
 
 

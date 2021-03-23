@@ -8,14 +8,14 @@ import {
     CLEAR_DATA,
     SET_IMAGE,
     SAVE_ACHIEVEMENT,
-    DELETE_ACHIEVEMENT
+    DELETE_ACHIEVEMENT,
+    SET_TOKEN
 } from "./actions"
 
 const StoreContext = createContext()
 const { Provider } = StoreContext
 
 const reducer = (state, action) => {
-    console.log(action)
     switch (action.type) {
         case SET_CHARACTER:
             return {
@@ -40,6 +40,8 @@ const reducer = (state, action) => {
                 characters: "",
                 achievement: "",
                 savedAchievements: "",
+                token: "",
+                img: "",
                 loading: false
             }
         case UPDATE_CHARACTER:
@@ -87,6 +89,12 @@ const reducer = (state, action) => {
                 ...state,
                 loading: true
             };
+        case SET_TOKEN:
+            return {
+                ...state,
+                token: action.token,
+                loading: false
+            }
         default:
             return state
     }
@@ -95,7 +103,8 @@ const reducer = (state, action) => {
 const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         characters: [],
-        savedAchievements: []
+        savedAchievements: [],
+        token: ''
     })
 
     return <Provider value={[state, dispatch]} {...props} />
