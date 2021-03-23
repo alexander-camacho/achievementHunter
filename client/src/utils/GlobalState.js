@@ -6,7 +6,9 @@ import {
     LOADING,
     UPDATE_CHARACTER,
     CLEAR_DATA,
-    SET_IMAGE
+    SET_IMAGE,
+    SAVE_ACHIEVEMENT,
+    DELETE_ACHIEVEMENT
 } from "./actions"
 
 const StoreContext = createContext()
@@ -37,6 +39,7 @@ const reducer = (state, action) => {
                 ...state,
                 characters: "",
                 achievement: "",
+                savedAchievements: "",
                 loading: false
             }
         case UPDATE_CHARACTER:
@@ -44,6 +47,7 @@ const reducer = (state, action) => {
                 ...state,
                 characters: [{
                     name: action.name,
+                    realm: action.realm,
                     level: action.level,
                     race: action.race,
                     spec: action.spec,
@@ -57,6 +61,21 @@ const reducer = (state, action) => {
                 ...state,
                 achievement: action.achievement,
                 loading: false
+            }
+        case SAVE_ACHIEVEMENT:
+            return {
+                ...state,
+                savedAchievements: [...state.savedAchievements, {
+                    achievement: action.saveAchieve,
+                }],
+                loading: false
+            }
+        case DELETE_ACHIEVEMENT:
+            return {
+                ...state,
+                savedAchievements: state.savedAchievements.filter((achievement) => {
+                    return achievement.achievement.id !== action.id
+                })
             }
         case SET_IMAGE:
             return {
@@ -75,7 +94,8 @@ const reducer = (state, action) => {
 
 const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
-        characters: []
+        characters: [],
+        savedAchievements: []
     })
 
     return <Provider value={[state, dispatch]} {...props} />
