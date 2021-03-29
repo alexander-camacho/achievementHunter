@@ -15,7 +15,7 @@ const Saved = () => {
     }
 
     if (!state.savedAchievements) {
-        return <div>No achievements saved!</div>
+        return <div><h1>No achievements saved!</h1></div>
     }
     return (
         <div>

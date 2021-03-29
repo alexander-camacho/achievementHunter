@@ -6,7 +6,7 @@ function AchieveBanner(props) {
 
     const [state, dispatch] = useStoreContext()
 
-    const url = `//wowhead.com/achievement=${props.data?.randomAchieve?.achievement?.id}`
+    const url = `https://www.wowhead.com/achievement=${props.data?.randomAchieve?.achievement?.id}`
 
     const name = props.data?.randomAchieve?.achievement?.name
 
@@ -19,7 +19,10 @@ function AchieveBanner(props) {
 
     return (
         <div className="achievement">
+            <div>
+
             <a target="_blank}" href={url}>{name}</a>
+            </div>
 
             {/* save button */}
             <button onClick={() => saveAchieve()}>Save</button>

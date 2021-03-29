@@ -54,7 +54,8 @@ const reducer = (state, action) => {
                     race: action.race,
                     spec: action.spec,
                     class: action.class,
-                    points: action.points
+                    points: action.points,
+                    faction: action.faction
                 }],
                 loading: false
             };

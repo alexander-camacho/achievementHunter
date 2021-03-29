@@ -5,9 +5,11 @@ import Nav from "./components/Nav"
 import Home from "./pages/Home"
 import Random from "./pages/Random"
 import Saved from "./pages/Saved"
+import fourOhFour from "./pages/FourOhFour"
 import { StoreProvider } from "./utils/GlobalState";
+import "./app.css"
 
-const App = () => {
+function App() {
   return (
     <Router>
       <div>
@@ -18,6 +20,7 @@ const App = () => {
             <Route exact path={'/'} component={Home} />
             <Route exact path={'/random'} component={Random} />
             <Route exact path={'/saved'} component={Saved} />
+            <Route exact path={'/404'} component={fourOhFour} />
           </Switch>
         </StoreProvider>
       </div>

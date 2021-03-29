@@ -5,10 +5,12 @@ import PlayerCard from "../components/PlayerCard"
 import { useStoreContext } from "../utils/GlobalState"
 import { SET_ACHIEVEMENT } from "../utils/actions"
 import API from "../utils/API"
+import { useHistory, withRouter } from 'react-router-dom'
 
 const Random = () => {
-
+    
     const [state, dispatch] = useStoreContext()
+    let history = useHistory()
 
 
     const pull = () => {
@@ -19,6 +21,9 @@ const Random = () => {
             }
             checkComplete(allAchieves)
             handleGetRandom(incomplete)
+        })
+        .catch(err => {
+            history.push('/404')
         })
     }
 
@@ -43,7 +48,7 @@ const Random = () => {
     }
 
     if(!state.characters){
-        return <div>no character</div>
+        return <div><h1>Please enter a character on the home page!</h1></div>
     }
 
     // Run the pull() function on page load.
