@@ -7,7 +7,6 @@ import Random from "./pages/Random"
 import Saved from "./pages/Saved"
 import fourOhFour from "./pages/FourOhFour"
 import { StoreProvider } from "./utils/GlobalState";
-import "./app.css"
 
 function App() {
   return (
