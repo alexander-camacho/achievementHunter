@@ -10,12 +10,15 @@ const Home = () => {
     const [state, dispatch] = useStoreContext()
 
     async function newToken() {
-        let response = await API.getToken()
-        dispatch({
-            type: SET_TOKEN,
-            token: response.data.token
-        })
-    }
+        await API.getToken()
+        .then(res =>
+            dispatch({
+                type: SET_TOKEN,
+                token: res.data.token
+
+            })
+    )
+}
 
     useEffect(() => {
         dispatch({ type: LOADING })
