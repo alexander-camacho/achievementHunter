@@ -9,15 +9,18 @@ const Home = () => {
 
     const [state, dispatch] = useStoreContext()
 
+    async function newToken() {
+        let response = await API.getToken()
+        dispatch({
+            type: SET_TOKEN,
+            token: response.data.token
+        })
+    }
+
     useEffect(() => {
         dispatch({ type: LOADING })
         dispatch({ type: CLEAR_DATA })
-        API.getToken()
-            .then(res =>
-                dispatch({
-                    type: SET_TOKEN,
-                    token: res.data.token
-                }))
+        newToken()
     }, [])
 
     return (<div className="container">
