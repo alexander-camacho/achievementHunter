@@ -5,11 +5,14 @@ const cors = require('cors')
 const OAuthClient = require('./config/client');
 const PORT = process.env.PORT || 3001;
 
-
-const oauthClient = new OAuthClient()
-
 let token = ''
-oauthClient.getToken().then(res => token = (res.token.access_token))
+
+async function newToken() {
+  const oauthClient = new OAuthClient()
+  const result = await oauthClient.getToken()
+  token = result.token.access_token
+}
+newToken()
 const app = express();
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
