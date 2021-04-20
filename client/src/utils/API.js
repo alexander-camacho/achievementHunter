@@ -4,8 +4,9 @@ const url = "https://us.api.blizzard.com/profile/wow/character"
 const urlTwo = "?namespace=profile-us&locale=en_US&access_token="
 export default {
 
-    getToken: function () {
-        return axios.get(`/token`)
+    getToken: async function () {
+        const response = await axios.get(`/token`)
+        return response
     },
 
     getAchievements: function (realm, character, token) {
